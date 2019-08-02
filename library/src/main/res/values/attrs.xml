@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AnimatedBar">
+        <!-- Whether animation should be initially enabled or not. -->
+        <attr name="animatedBar_animationEnabled" format="boolean" />
+        <!-- Style for item title. -->
+        <attr name="animatedBar_itemTitleAppearance" format="reference" />
+        <!-- Item icon width and height. -->
+        <attr name="animatedBar_itemIconSize" format="dimension" />
+        <!-- Item background. -->
+        <attr name="animatedBar_itemBackground" format="reference" />
+        <!-- Margin between item icon and title. -->
+        <attr name="animatedBar_itemTitleMargin" format="dimension" />
+        <!-- Top and bottom padding for item. -->
+        <attr name="animatedBar_itemPaddingVertical" format="dimension" />
+        <!-- Left and right padding for item. -->
+        <attr name="animatedBar_itemPaddingHorizontal" format="dimension" />
+    </declare-styleable>
+</resources>

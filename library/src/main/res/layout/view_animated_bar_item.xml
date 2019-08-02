@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vPanel"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/animated_bar_item_bg"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="@dimen/animated_bar_item_padding">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivIcon"
+        android:layout_width="@dimen/animated_bar_item_icon_size"
+        android:layout_height="@dimen/animated_bar_item_icon_size" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/animated_bar_item_title_margin"
+        android:layout_marginLeft="@dimen/animated_bar_item_title_margin"
+        android:textAppearance="@style/AnimatedBarTitleAppearance"
+        tools:text="Item" />
+
+</LinearLayout>

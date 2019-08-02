@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="animated_bar_height">56dp</dimen>
+    <dimen name="animated_bar_item_icon_size">18dp</dimen>
+    <dimen name="animated_bar_item_title_margin">8dp</dimen>
+    <dimen name="animated_bar_item_padding_vertical">8dp</dimen>
+    <dimen name="animated_bar_item_padding_horizontal">8dp</dimen>
+    <dimen name="text_animated_bar_item_title">12sp</dimen>
+</resources>

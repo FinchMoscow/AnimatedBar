@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AnimatedBar">
+        <item name="animatedBar_animationEnabled">true</item>
+        <item name="animatedBar_itemTitleAppearance">@style/AnimatedBarTitleAppearance</item>
+        <item name="animatedBar_itemIconSize">@dimen/animated_bar_item_icon_size</item>
+        <item name="animatedBar_itemBackground">@drawable/animated_bar_item_bg</item>
+        <item name="animatedBar_itemTitleMargin">@dimen/animated_bar_item_title_margin</item>
+        <item name="animatedBar_itemPaddingVertical">@dimen/animated_bar_item_padding_vertical</item>
+        <item name="animatedBar_itemPaddingHorizontal">@dimen/animated_bar_item_padding_horizontal</item>
+    </style>
+
+    <style name="AnimatedBarTitleAppearance">
+        <item name="android:textSize">@dimen/text_animated_bar_item_title</item>
+    </style>
+
+</resources>

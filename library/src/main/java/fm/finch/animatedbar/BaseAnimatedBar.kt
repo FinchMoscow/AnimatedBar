@@ -1,0 +1,196 @@
+package fm.finch.animatedbar
+
+import android.content.Context
+import android.util.AttributeSet
+import android.widget.FrameLayout
+import androidx.annotation.DrawableRes
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
+import kotlinx.android.synthetic.main.view_animated_bar.view.vConstraintPanel
+
+/**
+ * Animated bar that animates visibility of item's title on selection.
+ *
+ * You can extends this class with your own subclass to work with custom [AnimatedBarItem],
+ * or simply use [AnimatedBarItem] if you don't need custom item class.
+ *
+ * @param TItem Displayed item.
+ */
+open class BaseAnimatedBar<TItem : AnimatedBarItem> @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null
+) : FrameLayout(context, attrs) {
+
+    /** Displayed items. */
+    var items: List<TItem> = listOf()
+        set(value) {
+            field = value
+            vConstraintPanel.removeAllViews()
+            val viewIds = mutableListOf<Int>()
+            value.forEach { item ->
+                vConstraintPanel.addView(
+                    AnimatedBarItemView(context).apply {
+                        itemId = item.id
+                        title = item.title
+                        icon = item.icon
+                        id = ViewIdGenerator.generate().also {
+                            viewIds.add(it)
+                        }
+                        setOnClickListener {
+                            onItemClicked(item.id)
+                        }
+                        layoutParams = ConstraintLayout.LayoutParams(
+                            ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                            ConstraintLayout.LayoutParams.MATCH_PARENT
+                        )
+
+                        isAnimationEnabled = this@BaseAnimatedBar.isAnimationEnabled
+                        setTitleTextAppearance(itemTitleAppearance)
+                        setIconSize(itemIconSize)
+                        setItemBackground(itemBackgroundRes)
+                        setTitleMargin(itemTitleMargin)
+                        setItemPaddingHorizontal(itemPaddingHorizontal)
+                        setItemPaddingVertical(itemPaddingVertical)
+                    }
+                )
+            }
+
+            ConstraintSet().apply {
+                clone(vConstraintPanel)
+                createHorizontalChain(
+                    ConstraintSet.PARENT_ID,
+                    ConstraintSet.LEFT,
+                    ConstraintSet.PARENT_ID,
+                    ConstraintSet.RIGHT,
+                    viewIds.toIntArray(),
+                    null,
+                    ConstraintSet.CHAIN_SPREAD
+                )
+                viewIds.forEach {
+                    centerVertically(it, ConstraintSet.PARENT_ID)
+                }
+                applyTo(vConstraintPanel)
+            }
+        }
+
+    /**
+	 * Invoked when an item is clicked on by user with the selected item's id.
+	 * Note that it doesn't make item selected.
+	 */
+    var onItemClicked: (String) -> Unit = {}
+
+    /**
+	 * Item that is currently selected.
+	 * Note that setting this property will not trigger [onItemClicked].
+	 */
+    var selectedItemId: String? = null
+        set(value) {
+            if (field == value) return
+            field = value
+            vConstraintPanel.onChildren { child ->
+                if (child is AnimatedBarItemView) {
+                    child.isSelected = value != null && child.itemId == value
+                }
+            }
+        }
+
+    // Attributes
+
+    /** Indicates if animation is enabled/disabled.
+	 * Can be used, for example, to set initial selected item without animation.
+	 *
+	 * @attr ref R.styleable#AnimatedBar_animatedBar_animationEnabled
+	 */
+    var isAnimationEnabled: Boolean = true
+        set(value) {
+            field = value
+            onItemViews { it.isAnimationEnabled = value }
+        }
+
+    /** Resource id for style for item title. */
+    var itemTitleAppearance: Int = R.style.AnimatedBarTitleAppearance
+        set(value) {
+            field = value
+            onItemViews { it.setTitleTextAppearance(value) }
+        }
+
+    /** Icon size for item, in pixels. */
+    var itemIconSize: Int = context.dimen(R.dimen.animated_bar_item_icon_size)
+        set(value) {
+            field = value
+            onItemViews { it.setIconSize(value) }
+        }
+
+    /** Resource id for item background. */
+    @DrawableRes
+    var itemBackgroundRes: Int = R.drawable.animated_bar_item_bg
+        set(value) {
+            field = value
+            onItemViews { it.setItemBackground(value) }
+        }
+
+    /** Margin between title and icon, in pixels. */
+    var itemTitleMargin: Int = context.dimen(R.dimen.animated_bar_item_title_margin)
+        set(value) {
+            field = value
+            onItemViews { it.setTitleMargin(value) }
+        }
+
+    /** Top and bottom padding for item. */
+    var itemPaddingHorizontal: Int = context.dimen(R.dimen.animated_bar_item_padding_horizontal)
+        set(value) {
+            field = value
+            onItemViews { it.setItemPaddingHorizontal(value) }
+        }
+
+    /** Top and bottom padding for item. */
+    var itemPaddingVertical: Int = context.dimen(R.dimen.animated_bar_item_padding_vertical)
+        set(value) {
+            field = value
+            onItemViews { it.setItemPaddingVertical(value) }
+        }
+
+    init {
+        inflate(context, R.layout.view_animated_bar, this)
+
+        onAttrs(attrs, R.styleable.AnimatedBar, 0, R.style.AnimatedBar) {
+            isAnimationEnabled = getBoolean(
+                R.styleable.AnimatedBar_animatedBar_animationEnabled,
+                isAnimationEnabled
+            )
+            itemTitleAppearance = getResourceId(
+                R.styleable.AnimatedBar_animatedBar_itemTitleAppearance,
+                itemTitleAppearance
+            )
+            itemIconSize = getDimensionPixelSize(
+                R.styleable.AnimatedBar_animatedBar_itemIconSize,
+                itemIconSize
+            )
+            itemBackgroundRes =
+                getResourceId(
+                    R.styleable.AnimatedBar_animatedBar_itemBackground,
+                    itemBackgroundRes
+                )
+            itemTitleMargin = getDimensionPixelSize(
+                R.styleable.AnimatedBar_animatedBar_itemTitleMargin,
+                itemTitleMargin
+            )
+            itemPaddingHorizontal = getDimensionPixelSize(
+                R.styleable.AnimatedBar_animatedBar_itemPaddingHorizontal,
+                itemPaddingHorizontal
+            )
+            itemPaddingVertical = getDimensionPixelSize(
+                R.styleable.AnimatedBar_animatedBar_itemPaddingVertical,
+                itemPaddingVertical
+            )
+        }
+    }
+
+    private fun onItemViews(action: (AnimatedBarItemView) -> Unit) {
+        vConstraintPanel.onChildren { child ->
+            if (child is AnimatedBarItemView) {
+                action(child)
+            }
+        }
+    }
+}
