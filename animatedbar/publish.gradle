@@ -4,7 +4,7 @@ ext {
 
     libraryName = 'animatedbar'
 
-    publishedGroupId = 'com.akishindev'
+    publishedGroupId = 'fm.finch.android'
     artifact = 'animatedbar'
     libraryVersion = '1.0.0'
 
