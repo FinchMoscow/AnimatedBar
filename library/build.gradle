@@ -2,6 +2,9 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
 android {
     compileSdkVersion 28
 
@@ -42,3 +45,29 @@ dependencies {
 repositories {
     mavenCentral()
 }
+
+ext {
+    bintrayRepo = 'AnimatedBar'
+    bintrayName = 'fm.finch.animatedbar'
+
+    libraryName = 'library'
+
+    publishedGroupId = 'fm.finch.android'
+    artifact = 'animatedbar'
+    libraryVersion = '1.0.0'
+
+    libraryDescription = 'Animated bar'
+    siteUrl = 'https://gitlab.com/akishindev/animatedbar'
+    gitUrl = 'https://gitlab.com/akishindev/animatedbar.git'
+
+    developerId = 'de'
+    developerName = 'Dmitry Akishin'
+    developerEmail = 'akishindev@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

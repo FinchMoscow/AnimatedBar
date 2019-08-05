@@ -16,18 +16,23 @@ buildscript {
         // in the individual module build.gradle files
 
         classpath 'org.jlleitschuh.gradle:ktlint-gradle:7.4.0'
+
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
     }
 }
 
 subprojects {
     apply plugin: "org.jlleitschuh.gradle.ktlint"
+
+    tasks.withType(Javadoc).all { enabled = false }
 }
 
 allprojects {
     repositories {
         google()
         jcenter()
-        
+
     }
 }
 
