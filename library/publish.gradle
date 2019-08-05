@@ -1,0 +1,22 @@
+ext {
+    bintrayRepo = 'AnimatedBar'
+    bintrayName = 'fm.finch.animatedbar'
+
+    libraryName = 'library'
+
+    publishedGroupId = 'com.akishindev'
+    artifact = 'animatedbar'
+    libraryVersion = '1.0.1'
+
+    libraryDescription = 'Animated bar'
+    siteUrl = 'https://gitlab.com/akishindev/animatedbar'
+    gitUrl = 'https://gitlab.com/akishindev/animatedbar.git'
+
+    developerId = 'de'
+    developerName = 'Dmitry Akishin'
+    developerEmail = 'akishindev@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
