@@ -2,11 +2,11 @@ ext {
     bintrayRepo = 'AnimatedBar'
     bintrayName = 'fm.finch.animatedbar'
 
-    libraryName = 'library'
+    libraryName = 'animatedbar'
 
     publishedGroupId = 'com.akishindev'
     artifact = 'animatedbar'
-    libraryVersion = '1.0.1'
+    libraryVersion = '1.0.0'
 
     libraryDescription = 'Animated bar'
     siteUrl = 'https://gitlab.com/akishindev/animatedbar'
