@@ -1,3 +1,6 @@
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
 ext {
     bintrayRepo = 'AnimatedBar'
     bintrayName = 'fm.finch.animatedbar'
@@ -20,3 +23,6 @@ ext {
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
     allLicenses = ["Apache-2.0"]
 }
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
