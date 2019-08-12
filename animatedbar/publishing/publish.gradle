@@ -11,7 +11,7 @@ def WEBSITE_URL = "https://gitlab.com/akishindev/animatedbar"
 def VCS_URL = "https://gitlab.com/akishindev/animatedbar.git"
 def ISSUES_URL = "https://gitlab.com/akishindev/animatedbar/issues"
 
-def LIBRARY_VERSION_NAME = "1.0.0"
+def LIBRARY_VERSION_NAME = "1.0.1"
 
 group = GROUP_ID
 version = LIBRARY_VERSION_NAME
