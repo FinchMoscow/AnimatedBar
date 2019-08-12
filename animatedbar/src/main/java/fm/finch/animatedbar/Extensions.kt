@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
-import androidx.annotation.IntRange
 import androidx.annotation.IntegerRes
 import androidx.annotation.MenuRes
 import androidx.core.content.ContextCompat
