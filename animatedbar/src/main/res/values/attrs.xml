@@ -3,6 +3,8 @@
     <declare-styleable name="AnimatedBar">
         <!-- Whether animation should be initially enabled or not. -->
         <attr name="animatedBar_animationEnabled" format="boolean" />
+        <!-- Duration for item selection animation if milliseconds. -->
+        <attr name="animatedBar_animationDuration" format="integer" />
         <!-- Style for item title. -->
         <attr name="animatedBar_itemTitleAppearance" format="reference" />
         <!-- Item icon width and height. -->

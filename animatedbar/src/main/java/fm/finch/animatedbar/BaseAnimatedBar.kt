@@ -12,9 +12,9 @@ import kotlinx.android.synthetic.main.view_animated_bar.view.vConstraintPanel
  * Animated bar that animates visibility of item's title on selection.
  *
  * You can extends this class with your own subclass to work with custom [AnimatedBarItem],
- * or simply use [AnimatedBarItem] if you don't need custom item class.
+ * or simply use [AnimatedBarItem] if you don't need such customization.
  *
- * @param TItem Displayed item.
+ * @param TItem Displayed item that the bar works with.
  */
 open class BaseAnimatedBar<TItem : AnimatedBarItem> @JvmOverloads constructor(
     context: Context,
@@ -37,7 +37,9 @@ open class BaseAnimatedBar<TItem : AnimatedBarItem> @JvmOverloads constructor(
                             viewIds.add(it)
                         }
                         setOnClickListener {
-                            onItemClicked(item.id)
+                            if (onItemClicked(item)) {
+                                selectedItemId = item.id
+                            }
                         }
                         layoutParams = ConstraintLayout.LayoutParams(
                             ConstraintLayout.LayoutParams.WRAP_CONTENT,
@@ -45,6 +47,7 @@ open class BaseAnimatedBar<TItem : AnimatedBarItem> @JvmOverloads constructor(
                         )
 
                         isAnimationEnabled = this@BaseAnimatedBar.isAnimationEnabled
+                        setAnimationDuration(animationDuration)
                         setTitleTextAppearance(itemTitleAppearance)
                         setIconSize(itemIconSize)
                         setItemBackground(itemBackgroundRes)
@@ -74,15 +77,17 @@ open class BaseAnimatedBar<TItem : AnimatedBarItem> @JvmOverloads constructor(
         }
 
     /**
-	 * Invoked when an item is clicked on by user with the selected item's id.
-	 * Note that it doesn't make item selected.
-	 */
-    var onItemClicked: (String) -> Unit = {}
+     * Invoked when an item is clicked on by user.
+     *
+     * @return True if item should be automatically selected, false otherwise.
+     * Note that if it returns false, you should set selected menu manually via [selectedItemId].
+     */
+    var onItemClicked: (TItem) -> Boolean = { true }
 
     /**
-	 * Item that is currently selected.
-	 * Note that setting this property will not trigger [onItemClicked].
-	 */
+     * Item that is currently selected.
+     * Note that setting this property will not trigger [onItemClicked].
+     */
     var selectedItemId: String? = null
         set(value) {
             if (field == value) return
@@ -94,17 +99,29 @@ open class BaseAnimatedBar<TItem : AnimatedBarItem> @JvmOverloads constructor(
             }
         }
 
+    /** Returns selected item. Null if there is none. */
+    val selectedItem: TItem?
+        get() = items.find { it.id == selectedItemId }
+
     // Attributes
 
-    /** Indicates if animation is enabled/disabled.
-	 * Can be used, for example, to set initial selected item without animation.
-	 *
-	 * @attr ref R.styleable#AnimatedBar_animatedBar_animationEnabled
-	 */
+    /**
+     * Indicates if animation is enabled/disabled.
+     * Can be used, for example, to set initial selected item without animation.
+     */
     var isAnimationEnabled: Boolean = true
         set(value) {
             field = value
             onItemViews { it.isAnimationEnabled = value }
+        }
+
+    /**
+     * Duration for item selection animation. In milliseconds.
+     */
+    var animationDuration: Int = context.int(R.integer.animated_bar_animation_duration)
+        set(value) {
+            field = value
+            onItemViews { it.setAnimationDuration(value) }
         }
 
     /** Resource id for style for item title. */
@@ -136,7 +153,7 @@ open class BaseAnimatedBar<TItem : AnimatedBarItem> @JvmOverloads constructor(
             onItemViews { it.setTitleMargin(value) }
         }
 
-    /** Top and bottom padding for item. */
+    /** Left and right padding for item. */
     var itemPaddingHorizontal: Int = context.dimen(R.dimen.animated_bar_item_padding_horizontal)
         set(value) {
             field = value
@@ -157,6 +174,10 @@ open class BaseAnimatedBar<TItem : AnimatedBarItem> @JvmOverloads constructor(
             isAnimationEnabled = getBoolean(
                 R.styleable.AnimatedBar_animatedBar_animationEnabled,
                 isAnimationEnabled
+            )
+            animationDuration = getInt(
+                R.styleable.AnimatedBar_animatedBar_animationDuration,
+                animationDuration
             )
             itemTitleAppearance = getResourceId(
                 R.styleable.AnimatedBar_animatedBar_itemTitleAppearance,

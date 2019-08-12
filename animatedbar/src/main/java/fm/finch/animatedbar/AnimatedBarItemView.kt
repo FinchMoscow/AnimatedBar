@@ -19,7 +19,7 @@ class AnimatedBarItemView @JvmOverloads constructor(
 ) : FrameLayout(context, attrs) {
 
     private val lytTransition = LayoutTransition().apply {
-        setDuration(context.resources.getInteger(R.integer.anim_dur_bar_selection).toLong())
+        setDuration(context.int(R.integer.animated_bar_animation_duration).toLong())
     }
 
     var itemId: String = ""
@@ -92,5 +92,9 @@ class AnimatedBarItemView @JvmOverloads constructor(
         vPanel.setPadding(
             vPanel.paddingLeft, paddingVertical, vPanel.paddingRight, paddingVertical
         )
+    }
+
+    fun setAnimationDuration(animationDurationMs: Int) {
+        lytTransition.setDuration(animationDurationMs.toLong())
     }
 }

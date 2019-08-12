@@ -9,22 +9,23 @@
         android:id="@+id/vDefaultBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#10000000"/>
+        android:background="#10000000" />
 
     <fm.finch.animatedbar.AnimatedBar
         android:id="@+id/vMenuBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#20000000"/>
+        android:background="#20000000" />
 
     <fm.finch.animatedbar.sample.custom.CustomAnimatedBar
         android:id="@+id/vCustomBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#252525"
+        app:animatedBar_animationDuration="400"
         app:animatedBar_itemBackground="@drawable/custom_bar_item_bg"
         app:animatedBar_itemIconSize="22dp"
-        app:animatedBar_itemTitleAppearance="@style/DarkBarTitleAppearance"
+        app:animatedBar_itemTitleAppearance="@style/CustomBarTitleAppearance"
         app:animatedBar_itemTitleMargin="16dp" />
 
 </LinearLayout>
