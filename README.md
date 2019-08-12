@@ -4,6 +4,15 @@ Android library for an animated bar of items that animates item's title when the
 
 *Written in Kotlin.*
 
+## Table of contents
+
+* [Integration](#integration) 
+* [Usage](#usage)
+  - [Basics](#basics)
+  - [Custom items](#custom-items)
+  - [Setting from menu](#setting-from-menu)
+  - [Styling](#styling)
+
 ## Integration
 
 Minimum SDK version (`minSdkVersion`): 15.
@@ -19,6 +28,8 @@ dependencies {
 ```
 
 ## Usage
+
+### Basics
 
 Using the library is pretty straightforward. 
 
@@ -120,7 +131,7 @@ customAnimatedBar.onItemClicked = { item->
 }
 ```
 
-### Settings from menu
+### Setting from menu
 
 If you use `AnimatedBar` or its subclass, you can also set items from menu resource file. Place you menu.xml file in /menu directory and set it to ActionBar with `setFromMenu`:
 ```
@@ -162,7 +173,7 @@ actionBar.setFromMenu(R.menu.animated_bar) { itemId, item ->
 actionBar.selectedItemId = R.id.menu_item_1.toString()
 ```
 
-### Style
+### Styling
 
 You can customize the look of the AnimatedBar by using the following attributes in layout (and corresponding properties in code):
 
