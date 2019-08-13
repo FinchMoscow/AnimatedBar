@@ -207,6 +207,19 @@ open class BaseAnimatedBar<TItem : AnimatedBarItem> @JvmOverloads constructor(
         }
     }
 
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(
+            widthMeasureSpec,
+            MeasureSpec.makeMeasureSpec(
+                resolveSize(
+                    context.dimen(R.dimen.animated_bar_height),
+                    heightMeasureSpec
+                ),
+                MeasureSpec.EXACTLY
+            )
+        )
+    }
+
     private fun onItemViews(action: (AnimatedBarItemView) -> Unit) {
         vConstraintPanel.onChildren { child ->
             if (child is AnimatedBarItemView) {

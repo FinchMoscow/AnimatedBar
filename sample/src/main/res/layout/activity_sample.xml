@@ -8,8 +8,7 @@
     <fm.finch.animatedbar.AnimatedBar
         android:id="@+id/vDefaultBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#10000000" />
+        android:layout_height="wrap_content" />
 
     <fm.finch.animatedbar.AnimatedBar
         android:id="@+id/vMenuBar"
@@ -20,7 +19,7 @@
     <fm.finch.animatedbar.sample.custom.CustomAnimatedBar
         android:id="@+id/vCustomBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:background="#252525"
         app:animatedBar_animationDuration="400"
         app:animatedBar_itemBackground="@drawable/custom_bar_item_bg"
