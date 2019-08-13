@@ -2,6 +2,8 @@
 
 Android library for an animated bar that animates visibility of items' title when an item is selected.
 
+![Demo gif](art/demo1.gif)
+
 # Table of contents
 
 * [Integration](#integration) 
@@ -17,7 +19,7 @@ Minimum SDK version (`minSdkVersion`): 15.
 
 This library is released in Maven Central, so just add the following dependency in your `build.gradle` file:
 
-```
+```groovy
 dependencies {
     // Other dependencies
 
@@ -34,7 +36,7 @@ dependencies {
 Using the library is pretty straightforward. 
 
 Add AnimatedBar in your layout: 
-```
+```xml
 <fm.finch.animatedbar.AnimatedBar
     android:id="@+id/animatedBar"
     android:layout_width="match_parent"
@@ -42,7 +44,7 @@ Add AnimatedBar in your layout:
 ```
 
 Set items via the `items` property. For example, here we generate and set a list of 5 items:
-```
+```kotlin
 val animatedBarItems: List<AnimatedBarItem> = (1..5).map {
             AnimatedBarItem.Basic(
                 id = it.toString(),
@@ -56,12 +58,12 @@ animatedBar.items = animatedBarItems
 *`AnimatedBarItem` is an interface, so to instantiate items, you need to use `AnimatedBarItem.Basic` class.*
 
 Set selected item by passing its id to `selectedItemId`. For example, here we select the first item:
-```
+```kotlin
 animatedBar.selectedItemId = animatedBarItems.first().id
 ```
 
 By default, when user clicks on an item, it automatically gets selected. You can change that, or add some additional handling, by setting `onItemClicked`:
-```
+```kotlin
 animatedBar.onItemClicked = { item -> 
      // You can add any custom handling here.
     // For example, lets make it so that clicking a selected item will deselect it.
@@ -82,7 +84,7 @@ animatedBar.onItemClicked = { item ->
 You can use the `selectedItem` property, which returns currently selected item, or null, if no item is selected.
 
 You can also disable animations with the `isAnimationEnabled` property. This can be useful, for example, when you load and set items asynchronously and want to set initial item without animations.
-```
+```kotlin
 animatedBar.isAnimationEnabled = false
 
 animatedBar.items = animatedBarItems
@@ -96,7 +98,7 @@ animatedBar.isAnimationEnabled = true
 You can easily set up an AnimatedBar that works with your custom items.
 
 First, your item class needs to implement the `AnimatedBarItem` interface:
-```
+```kotlin
 data class CustomAnimatedBarItem(
     override val id: String,
     override val title: String,
@@ -106,7 +108,7 @@ data class CustomAnimatedBarItem(
 ```
 
 Next, you need to create a sublass of `BaseAnimatedBar`, specifying `CustomAnimatedBarItem` for the generic type parameter:
-```
+```kotlin
 class CustomAnimatedBar @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null
@@ -114,14 +116,14 @@ class CustomAnimatedBar @JvmOverloads constructor(
 ```
 
 Now you can add it to your layout:
-```
+```xml
 <fm.finch.animatedbar.sample.custom.CustomAnimatedBar
         android:id="@+id/customAnimatedBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 ```
 ...and it will work with you custom item type:
-```
+```kotlin
 val customBarItems = (1..5).map {
         CustomAnimatedBarItem(
             id = it.toString(),
@@ -144,8 +146,8 @@ customAnimatedBar.onItemClicked = { item->
 
 If you use `AnimatedBar` or its subclass, you can also set items from a menu resource file. 
 
-Place you menu.xml file under the */menu* resource directory:
-```
+Place you menu file under the */menu* resource directory:
+```xml
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
@@ -158,11 +160,10 @@ Place you menu.xml file under the */menu* resource directory:
         android:icon="@drawable/ic_action_bar_item"
         android:title="MenuItem2" />
 
-    <-- Other items -->
 </menu>
 ```
-...and set it to ActionBar with `setFromMenu`:
-```
+...and set it to ActionBar with `setFromMenu` (in this example the file of the menu file is *animated_bar.xml*):
+```kotlin
 actionBar.setFromMenu(R.menu.animated_bar) { itemId, item ->
         // We can access title and icon of the item
         val title = item.title
@@ -203,7 +204,7 @@ You can customize the look of the AnimatedBar by using the following attributes 
 | `android:background` | `background` | Background for AnimatedBar | Transparent |
 
 All the default values can be found in `@style/AnimatedBar`:
-```
+```xml
 <style name="AnimatedBar">
     <item name="animatedBar_animationEnabled">true</item>
     <item name="animatedBar_animationDuration">@integer/animated_bar_animation_duration</item>
