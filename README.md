@@ -1,10 +1,8 @@
 # AnimatedBar
 
-Android library for an animated bar of items that animates item's title when the item gets selected.
+Android library for an animated bar that animates visibility of items' title when an item is selected.
 
-*Written in Kotlin.*
-
-## Table of contents
+# Table of contents
 
 * [Integration](#integration) 
 * [Usage](#usage)
@@ -13,11 +11,11 @@ Android library for an animated bar of items that animates item's title when the
   - [Setting from menu](#setting-from-menu)
   - [Styling](#styling)
 
-## Integration
+# Integration
 
 Minimum SDK version (`minSdkVersion`): 15.
 
-Add the following dependency in your `build.gradle` file:
+This library is released in Maven Central, so just add the following dependency in your `build.gradle` file:
 
 ```
 dependencies {
@@ -27,9 +25,11 @@ dependencies {
 }
 ```
 
-## Usage
+# Usage
 
-### Basics
+## Basics
+
+*The library is written entirely on Kotlin, so all the code below is in Kotlin, too.*
 
 Using the library is pretty straightforward. 
 
@@ -63,13 +63,21 @@ animatedBar.selectedItemId = animatedBarItems.first().id
 By default, when user clicks on an item, it automatically gets selected. You can change that, or add some additional handling, by setting `onItemClicked`:
 ```
 animatedBar.onItemClicked = { item -> 
-    // Do something
+     // You can add any custom handling here.
+    // For example, lets make it so that clicking a selected item will deselect it.
+    if (item.id == animatedBar.selectedItemId) {
+        animatedBar.selectedItemId = null
+    } else {
+        animatedBar.selectedItemId = item.id
+    }
     
-    // Return true if you want the item to get automatically selected, false otherwise
+    // Return true if you want the item to get automatically selected, false otherwise.
+    // In this example we return false as we have already handled the event
     return false
 }
 ```
-*Note that `onItemClicked` is not invoked when selecting an item via `selectedItemId`.*
+
+*Note that `onItemClicked` is not invoked when settings the selected item via `selectedItemId`.*
 
 You can use the `selectedItem` property, which returns currently selected item, or null, if no item is selected.
 
@@ -83,11 +91,11 @@ animatedBar.selectedItemId = animatedBarItems.first().id
 animatedBar.isAnimationEnabled = true
 ```
 
-### Custom items
+## Custom items
 
 You can easily set up an AnimatedBar that works with your custom items.
 
-First, your item class needs to implement `AnimatedBarItem` interface:
+First, your item class needs to implement the `AnimatedBarItem` interface:
 ```
 data class CustomAnimatedBarItem(
     override val id: String,
@@ -97,7 +105,7 @@ data class CustomAnimatedBarItem(
 ) : AnimatedBarItem
 ```
 
-Next, you need to sublass `BaseAnimatedBar`:
+Next, you need to create a sublass of `BaseAnimatedBar`, specifying `CustomAnimatedBarItem` for the generic type parameter:
 ```
 class CustomAnimatedBar @JvmOverloads constructor(
     context: Context,
@@ -122,6 +130,7 @@ val customBarItems = (1..5).map {
             someExtraData = "Some extra data for item $it"
         )
     }
+// customAnimatedBar expects CustomAnimatedBarItem objects for items
 customAnimatedBar.items = customBarItems
 customAnimatedBar.onItemClicked = { item->
     // Note that the item that is passed here is of CustomAnimatedBarItem type
@@ -131,9 +140,11 @@ customAnimatedBar.onItemClicked = { item->
 }
 ```
 
-### Setting from menu
+## Setting from menu
 
-If you use `AnimatedBar` or its subclass, you can also set items from menu resource file. Place you menu.xml file in /menu directory and set it to ActionBar with `setFromMenu`:
+If you use `AnimatedBar` or its subclass, you can also set items from a menu resource file. 
+
+Place you menu.xml file under the */menu* resource directory:
 ```
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -150,6 +161,7 @@ If you use `AnimatedBar` or its subclass, you can also set items from menu resou
     <-- Other items -->
 </menu>
 ```
+...and set it to ActionBar with `setFromMenu`:
 ```
 actionBar.setFromMenu(R.menu.animated_bar) { itemId, item ->
         // We can access title and icon of the item
@@ -170,24 +182,25 @@ actionBar.setFromMenu(R.menu.animated_bar) { itemId, item ->
         // Return true to automatically select item
         true
     }
+// To select an item, you need to cast its id to String
 actionBar.selectedItemId = R.id.menu_item_1.toString()
 ```
 
-### Styling
+## Styling
 
 You can customize the look of the AnimatedBar by using the following attributes in layout (and corresponding properties in code):
 
 | Attribute (in layout)     | Property (in code)        | Description   | Default value |
 | ------------- | ------------- | -----------   | ------------- |
-| `animatedBar_animationEnabled` | `isAnimationEnabled` | Whether animation is enables or disabled. | true |
-| `animatedBar_animationDuration` | `animationDuration` | Duration for item selection animation (in milliseconds). | `@integer/animated_bar_animation_duration` (200) |
-| `animatedBar_itemTitleAppearance` | `itemTitleAppearance` | Style for item's title. | `@style/AnimatedBarTitleAppearance` |
-| `animatedBar_itemIconSize` | `isAnimationEnabled` | Icon size for item.  | `@dimen/animated_bar_item_icon_size` (18dp) |
-| `animatedBar_itemBackground` | `itemBackgroundRes` | Item background. | `@drawable/animated_bar_item_bg` |
-| `animatedBar_itemTitleMargin` | `itemTitleMargin` | Margin between title and icon | `@dimen/animated_bar_item_title_margin` (8dp) |
-| `animatedBar_itemPaddingVertical` | `itemPaddingVertical` | Top and bottom padding for item. | `@dimen/animated_bar_item_padding_vertical` (8dp) |
-| `animatedBar_itemPaddingHorizontal` | `itemPaddingHorizontal` | Left and right padding for item. | `@dimen/animated_bar_item_padding_horizontal` (8dp) |
-| `android:background` | - | Background for AnimatedBar | transparent |
+| `animatedBar_animationEnabled` | `isAnimationEnabled` | Whether animation is enabled or disabled. | true |
+| `animatedBar_animationDuration` | `animationDuration` | Duration for item selection animation (in milliseconds). | 200 |
+| `animatedBar_itemTitleAppearance` | `itemTitleAppearance` | Style for item's title. | Text size: 12sp |
+| `animatedBar_itemIconSize` | `isAnimationEnabled` | Icon size for item.  | 18dp |
+| `animatedBar_itemBackground` | `itemBackgroundRes` | Item background. | Transparent with ripple of `#10000000` |
+| `animatedBar_itemTitleMargin` | `itemTitleMargin` | Margin between title and icon | 8dp |
+| `animatedBar_itemPaddingVertical` | `itemPaddingVertical` | Top and bottom padding for item. | 8dp |
+| `animatedBar_itemPaddingHorizontal` | `itemPaddingHorizontal` | Left and right padding for item. | 8dp |
+| `android:background` | `background` | Background for AnimatedBar | Transparent |
 
 All the default values can be found in `@style/AnimatedBar`:
 ```
