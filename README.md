@@ -23,7 +23,7 @@ This library is released in Maven Central, so just add the following dependency 
 dependencies {
     // Other dependencies
 
-    implementation 'fm.finch.android:animatedbar:1.0.1'
+    implementation 'fm.finch.android:animatedbar:1.0.2'
 }
 ```
 
