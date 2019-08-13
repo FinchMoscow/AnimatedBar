@@ -2,6 +2,8 @@
 
 Android library for an animated bar that animates visibility of items' title when an item is selected.
 
+![Demo gif](https://gitlab.com/akishindev/animatedbar/blob/master/art/demo1.gif)
+
 # Table of contents
 
 * [Integration](#integration) 
