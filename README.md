@@ -13,6 +13,7 @@ Android library for an animated bar that animates visibility of items' titles wh
   - [Setting from menu](#setting-from-menu)
   - [Styling](#styling)
 * [Examples](#examples)
+* [Credits](#credits)
 * [License](#license)
 
 # Integration
@@ -234,7 +235,7 @@ Here is an example of a heavily customized AnimatedBar:
 
 ![Customized AnimatedBar](art/demo3.gif)
 
-*Item names are set to be of varying length to demontrate how it looks in such scenario.*
+*Item names are set to be of varying length to demontrate what it looks like in such scenario.*
 
 The layout for this example:
 ```xml
