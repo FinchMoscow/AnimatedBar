@@ -82,9 +82,9 @@ animatedBar.onItemClicked = { item ->
 }
 ```
 
-*Note that `onItemClicked` is not invoked when settings the selected item via `selectedItemId`.*
+*Note that `onItemClicked` is not invoked when setting the selected item via `selectedItemId`.*
 
-You can use the `selectedItem` property, which returns currently selected item, or null, if no item is selected.
+You can use the `selectedItem` property, which returns the currently selected item, or null, if no item is selected.
 
 You can also disable animations with the `isAnimationEnabled` property. This can be useful, for example, when you load and set items asynchronously and want to set initial item without animations.
 ```kotlin
@@ -204,8 +204,8 @@ You can customize the look of the AnimatedBar using the following attributes in 
 | `animatedBar_itemTitleMargin` | `itemTitleMargin` | Margin between title and icon | 8dp |
 | `animatedBar_itemPaddingVertical` | `itemPaddingVertical` | Top and bottom padding for item. | 8dp |
 | `animatedBar_itemPaddingHorizontal` | `itemPaddingHorizontal` | Left and right padding for item. | 8dp |
-| `android:background` | `background` | Background for AnimatedBar | Transparent |
-| `android:layout_height` | - | Height for AnimatedBar | 52dp* |
+| `android:background` | `background` | Background for AnimatedBar. | Transparent |
+| `android:layout_height` | - | Height for AnimatedBar. | 52dp* |
 
 *\*To use the default height, set `android:layout_height=wrap_content`. To use custom height, set `android:layout_height` to any size you like.*
 
