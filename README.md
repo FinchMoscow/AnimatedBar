@@ -1,8 +1,8 @@
 # AnimatedBar
 
-Android library for an animated bar that animates visibility of items' title when an item is selected.
+Android library for an animated bar that animates visibility of items' titles when an item is selected.
 
-![Demo gif](art/demo1.gif)
+![Demo gif](art/demo2.gif)
 
 # Table of contents
 
@@ -12,7 +12,8 @@ Android library for an animated bar that animates visibility of items' title whe
   - [Custom items](#custom-items)
   - [Setting from menu](#setting-from-menu)
   - [Styling](#styling)
-  - [License](#license)
+* [Examples](#examples)
+* [License](#license)
 
 # Integration
 
@@ -123,7 +124,7 @@ Now you can add it to your layout:
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 ```
-...and it will work with you custom item type:
+... and it will work with you custom item type:
 ```kotlin
 val customBarItems = (1..5).map {
         CustomAnimatedBarItem(
@@ -163,7 +164,7 @@ Place you menu file under the */menu* resource directory:
 
 </menu>
 ```
-...and set it to ActionBar with `setFromMenu` (in this example the file of the menu file is *animated_bar.xml*):
+... and set it to ActionBar with `setFromMenu` (in this example the name of the menu file is *animated_bar.xml*):
 ```kotlin
 actionBar.setFromMenu(R.menu.animated_bar) { itemId, item ->
         // We can access title and icon of the item
@@ -190,7 +191,7 @@ actionBar.selectedItemId = R.id.menu_item_1.toString()
 
 ## Styling
 
-You can customize the look of the AnimatedBar by using the following attributes in layout (and corresponding properties in code):
+You can customize the look of the AnimatedBar using the following attributes in layout (and corresponding properties in code):
 
 | Attribute (in layout)     | Property (in code)        | Description   | Default value |
 | ------------- | ------------- | -----------   | ------------- |
@@ -205,7 +206,7 @@ You can customize the look of the AnimatedBar by using the following attributes 
 | `android:background` | `background` | Background for AnimatedBar | Transparent |
 | `android:layout_height` | - | Height for AnimatedBar | 52dp* |
 
-*\*To use default height, set `android:layout_height=wrap_content`. To use custom height, set `android:layout_height` to any size you like.*
+*\*To use the default height, set `android:layout_height=wrap_content`. To use custom height, set `android:layout_height` to any size you like.*
 
 All the default values can be found in `@style/AnimatedBar`:
 ```xml
@@ -225,7 +226,53 @@ All the default values can be found in `@style/AnimatedBar`:
 </style>
 ```
 
+# Examples
+
+The [sample](/sample) project contains some examples to demontrate how you can use the library.
+
+Here is an example of a heavily customized AnimatedBar:
+
+![Customized AnimatedBar](art/demo3.gif)
+
+*Item names are set to be of varying length to demontrate how it looks in such scenario.*
+
+The layout for this example:
+```xml
+<fm.finch.animatedbar.AnimatedBar
+    android:id="@+id/vCustomBar"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="#252525"
+    app:animatedBar_animationDuration="400"
+    app:animatedBar_itemBackground="@drawable/custom_bar_item_bg"
+    app:animatedBar_itemIconSize="22dp"
+    app:animatedBar_itemTitleAppearance="@style/CustomBarTitleAppearance"
+    app:animatedBar_itemTitleMargin="16dp" />
+```
+Style for item title:
+```xml
+<style name="CustomBarTitleAppearance" parent="AnimatedBarTitleAppearance">
+    <item name="android:textColor">#c3c3c3</item>
+    <item name="android:textSize">16sp</item>
+    <item name="android:textStyle">italic</item>
+a</style>
+```
+... and drawable for item background (`@drawable/custom_bar_item_bg`): 
+```xml
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#10ffffff" />
+```
+
+As you can see, you can customize pretty much everything.
+
+# Credits
+
+Developed by Android team at [Finch](https://finch.fm/):
+* Original view implementation by Ilya Smirnov.
+* Library by Dmitry Akishin.
+
 # License
+
 ```
 Copyright 2019 Finch.
 
