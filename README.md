@@ -23,7 +23,7 @@ This library is released in Maven Central, so just add the following dependency 
 dependencies {
     // Other dependencies
 
-    implementation 'fm.finch.android:animatedbar:1.0.1'
+    implementation 'fm.finch.android:animatedbar:1.0.2'
 }
 ```
 
@@ -202,6 +202,9 @@ You can customize the look of the AnimatedBar by using the following attributes 
 | `animatedBar_itemPaddingVertical` | `itemPaddingVertical` | Top and bottom padding for item. | 8dp |
 | `animatedBar_itemPaddingHorizontal` | `itemPaddingHorizontal` | Left and right padding for item. | 8dp |
 | `android:background` | `background` | Background for AnimatedBar | Transparent |
+| `android:layout_height` | - | Height for AnimatedBar | 52dp* |
+
+*\*To use default height, set `android:layout_height=wrap_content`. To use custom height, set `android:layout_height` to any size you like.*
 
 All the default values can be found in `@style/AnimatedBar`:
 ```xml
