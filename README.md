@@ -18,7 +18,7 @@ Android library for an animated bar that animates visibility of items' titles wh
 
 # Integration
 
-Minimum SDK version (`minSdkVersion`): 15.
+Minimum supported API level (`minSdkVersion`): 15.
 
 This library is released in Maven Central, so just add the following dependency in your `build.gradle` file:
 
