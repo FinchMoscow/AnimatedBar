@@ -20,13 +20,20 @@ Android library for an animated bar that animates visibility of items' titles wh
 
 Minimum supported API level (`minSdkVersion`): 15.
 
-This library is released in JCenter, so just add the following dependency in your `build.gradle` file:
+The library is available in JCenter, so first make sure you have the repository added in your root `build.gradle` file (should be there by default):
 
 ```groovy
-dependencies {
-    // Other dependencies
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+```
 
-    implementation 'fm.finch.android:animatedbar:1.0.2'
+... and then just add the following dependency:
+```groovy
+dependencies {
+    implementation 'fm.finch.android:animatedbar:1.0.3'
 }
 ```
 
