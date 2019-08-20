@@ -20,7 +20,7 @@ Android library for an animated bar that animates visibility of items' titles wh
 
 Minimum supported API level (`minSdkVersion`): 15.
 
-This library is released in Maven Central, so just add the following dependency in your `build.gradle` file:
+This library is released in JCenter, so just add the following dependency in your `build.gradle` file:
 
 ```groovy
 dependencies {
