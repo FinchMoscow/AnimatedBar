@@ -53,7 +53,7 @@ Add AnimatedBar in your layout:
     android:layout_height="wrap_content" />
 ```
 
-Set items via the `items` property. For example, here we generate and set a list of 5 items:
+Set items via the `items` property. For example, here we generate and a list of 5 items:
 ```kotlin
 val animatedBarItems: List<AnimatedBarItem> = (1..5).map {
             AnimatedBarItem.Basic(
@@ -93,7 +93,7 @@ animatedBar.onItemClicked = { item ->
 
 You can use the `selectedItem` property, which returns the currently selected item, or null, if no item is selected.
 
-You can also disable animations with the `isAnimationEnabled` property. This can be useful, for example, when you load and set items asynchronously and want to set initial item without animations.
+You can also disable animations with the `isAnimationEnabled` property. This can be useful, for example, when you load and set items asynchronously and want to set initial item without animations:
 ```kotlin
 animatedBar.isAnimationEnabled = false
 
@@ -180,7 +180,7 @@ actionBar.setFromMenu(R.menu.animated_bar) { itemId, item ->
         val icon = item.icon
 
         // itemId has been already cast to Int,
-        // so we can check it the same way we usually do for menus.
+        // so we can check it the same way we usually do for menus
         when (itemId) {
             R.id.menu_item_1 -> {
                 // Do something
