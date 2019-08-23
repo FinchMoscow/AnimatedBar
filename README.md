@@ -33,9 +33,11 @@ buildscript {
 ... and then just add the following dependency:
 ```groovy
 dependencies {
-    implementation 'fm.finch.android:animatedbar:1.0.3'
+    implementation 'fm.finch:animatedbar:1.0.0'
 }
 ```
+
+You can check the latest versoin [here](https://bintray.com/finchmoscow/AnimatedBar/fm.finch.animatedbar).
 
 # Usage
 
