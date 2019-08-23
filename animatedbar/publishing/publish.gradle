@@ -1,17 +1,18 @@
 apply plugin: 'digital.wup.android-maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
-def GROUP_ID = "fm.finch.android"
+def GROUP_ID = "fm.finch"
 def ARTIFACT_ID = "animatedbar"
 
 def BINTRAY_REPOSITORY = "AnimatedBar"
-def BINTRAY_NAME = "fm.finch.android.animatedbar"
+def BINTRAY_NAME = "fm.finch.animatedbar"
+def BINTRAY_ORG = "finchmoscow"
 
-def WEBSITE_URL = "https://gitlab.com/akishindev/animatedbar"
-def VCS_URL = "https://gitlab.com/akishindev/animatedbar.git"
-def ISSUES_URL = "https://gitlab.com/akishindev/animatedbar/issues"
+def WEBSITE_URL = "https://github.com/FinchMoscow/AnimatedBar"
+def VCS_URL = "https://github.com/FinchMoscow/AnimatedBar.git"
+def ISSUES_URL = "https://github.com/FinchMoscow/AnimatedBar/issues"
 
-def LIBRARY_VERSION_NAME = "1.0.3"
+def LIBRARY_VERSION_NAME = "1.0.0"
 
 group = GROUP_ID
 version = LIBRARY_VERSION_NAME
@@ -45,6 +46,7 @@ bintray {
     pkg {
         repo = BINTRAY_REPOSITORY
         name = BINTRAY_NAME
+        userOrg = BINTRAY_ORG
 
         publish = true
         override = true
