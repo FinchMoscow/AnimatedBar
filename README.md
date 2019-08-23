@@ -37,7 +37,7 @@ dependencies {
 }
 ```
 
-You can check the latest versoin [here](https://bintray.com/finchmoscow/AnimatedBar/fm.finch.animatedbar).
+You can check the latest version [here](https://bintray.com/finchmoscow/AnimatedBar/fm.finch.animatedbar).
 
 # Usage
 
