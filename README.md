@@ -15,6 +15,7 @@ Android library for an animated bar that animates visibility of items' titles wh
   - [Setting from menu](#setting-from-menu)
   - [Styling](#styling)
 * [Examples](#examples)
+* [Contributing](#contributing)
 * [Credits](#credits)
 * [License](#license)
 
@@ -276,6 +277,10 @@ a</style>
 ```
 
 As you can see, you can customize pretty much everything.
+
+# Contributing
+
+If you would like to contribute to the project, please refer to the [Contributing](CONTRIBUTING.md) guide.
 
 # Credits
 
