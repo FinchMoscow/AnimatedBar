@@ -280,8 +280,8 @@ As you can see, you can customize pretty much everything.
 # Credits
 
 Developed by Android team at [FINCH](https://finch.fm/):
-* Original view implementation by Ilya Smirnov.
-* Library by Dmitry Akishin.
+* Original view implementation by Ilya Smirnov
+* Library by Dmitry Akishin akishindev@gmail.com
 
 # License
 
