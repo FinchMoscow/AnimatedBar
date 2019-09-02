@@ -1,0 +1,38 @@
+language: android
+jdk: oraclejdk8
+env:
+  global:
+    - ANDROID_API_LEVEL=28
+    - ANDROID_BUILD_TOOLS_VERSION=26.1.1
+android:
+  licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
+  components:
+    - tools
+    - platform-tools
+    # The BuildTools version used by your project
+    - build-tools-$ANDROID_BUILD_TOOLS_VERSION
+    # The SDK version used to compile your project
+    - android-$ANDROID_API_LEVEL
+    # Additional components
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - addon-google_apis-google-$ANDROID_API_LEVEL
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache
+before_script:
+  # Prepare pre-accepted licenses to not be prompted at installation
+  - mkdir -p "$ANDROID_HOME/licenses"
+  - cp ./google-licenses/* "$ANDROID_HOME/licenses/"
+script:
+  - ./gradlew build check
+  - ./gradlew ktlintCheck
