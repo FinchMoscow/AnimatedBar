@@ -33,6 +33,8 @@ before_script:
   # Prepare pre-accepted licenses to not be prompted at installation
   - mkdir -p "$ANDROID_HOME/licenses"
   - cp ./google-licenses/* "$ANDROID_HOME/licenses/"
+  # Make gradlew executable
+  - chmod +x gradlew
 script:
   - ./gradlew build check
   - ./gradlew ktlintCheck
