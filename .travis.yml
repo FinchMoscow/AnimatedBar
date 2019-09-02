@@ -35,5 +35,7 @@ before_script:
   - cp ./google-licenses/* "$ANDROID_HOME/licenses/"
   # Make gradlew executable
   - chmod +x gradlew
+  # Create stub local.properties so that the build can pass
+  - touch local.properties
 script:
   - ./gradlew build check
