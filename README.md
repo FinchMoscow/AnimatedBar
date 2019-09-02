@@ -1,7 +1,8 @@
-[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
-[![Build Status](https://travis-ci.org/FinchMoscow/AnimatedBar.svg?branch=master)](https://travis-ci.org/FinchMoscow/AnimatedBar)
-
 # AnimatedBar
+
+[![Build Status](https://travis-ci.org/FinchMoscow/AnimatedBar.svg?branch=master)](https://travis-ci.org/FinchMoscow/AnimatedBar)
+[ ![Download](https://api.bintray.com/packages/finchmoscow/AnimatedBar/fm.finch.animatedbar/images/download.svg) ](https://bintray.com/finchmoscow/AnimatedBar/fm.finch.animatedbar/_latestVersion)
+[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 
 Android library for an animated bar that animates visibility of items' titles when an item is selected.
 
@@ -41,7 +42,7 @@ dependencies {
 }
 ```
 
-You can check the latest version [here](https://bintray.com/finchmoscow/AnimatedBar/fm.finch.animatedbar).
+You can check the latest version on [Bintray](https://bintray.com/finchmoscow/AnimatedBar/fm.finch.animatedbar/_latestVersion).
 
 # Usage
 
