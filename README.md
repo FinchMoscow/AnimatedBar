@@ -39,7 +39,7 @@ buildscript {
 ... and then just add the following dependency:
 ```groovy
 dependencies {
-    implementation 'fm.finch:animatedbar:1.0.0'
+    implementation 'fm.finch:animatedbar:1.0.1'
 }
 ```
 

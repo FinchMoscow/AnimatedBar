@@ -12,7 +12,7 @@ def WEBSITE_URL = "https://github.com/FinchMoscow/AnimatedBar"
 def VCS_URL = "https://github.com/FinchMoscow/AnimatedBar.git"
 def ISSUES_URL = "https://github.com/FinchMoscow/AnimatedBar/issues"
 
-def LIBRARY_VERSION_NAME = "1.0.0"
+def LIBRARY_VERSION_NAME = "1.0.1"
 
 group = GROUP_ID
 version = LIBRARY_VERSION_NAME
