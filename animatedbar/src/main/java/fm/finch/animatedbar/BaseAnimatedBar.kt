@@ -75,15 +75,23 @@ open class BaseAnimatedBar<TItem : AnimatedBarItem> @JvmOverloads constructor(
 
             ConstraintSet().apply {
                 clone(vConstraintPanel)
-                createHorizontalChain(
-                    ConstraintSet.PARENT_ID,
-                    ConstraintSet.LEFT,
-                    ConstraintSet.PARENT_ID,
-                    ConstraintSet.RIGHT,
-                    viewIds.toIntArray(),
-                    null,
-                    ConstraintSet.CHAIN_SPREAD
-                )
+                when (viewIds.size) {
+                    0 -> Unit
+                    1 -> {
+                        centerHorizontally(viewIds.first(), ConstraintSet.PARENT_ID)
+                    }
+                    else -> {
+                        createHorizontalChain(
+                            ConstraintSet.PARENT_ID,
+                            ConstraintSet.LEFT,
+                            ConstraintSet.PARENT_ID,
+                            ConstraintSet.RIGHT,
+                            viewIds.toIntArray(),
+                            null,
+                            ConstraintSet.CHAIN_SPREAD
+                        )
+                    }
+                }
                 viewIds.forEach {
                     centerVertically(it, ConstraintSet.PARENT_ID)
                 }
